@@ -1,5 +1,3 @@
-## No commercial intent whatsoever. This project is a personal project based on the Upbit Exchange page using the Upbit open API and socket. Please check the license.
-
 # QUASAR+VUE3+VITE
 
 - AXIOS
