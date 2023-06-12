@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  color: $dark-color;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-size: 1.4rem;
+  font-family: inherit;
+  padding-top: 5rem;
+
+  * {
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+img {
+  height: auto;
+  border: 0;
+}
+a {
+  color: inherit;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+
+  &.secure {
+    text-security: disc;
+    -webkit-text-security: disc;
+  }
+}
+
+button {
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+// ms input 입력시 눈모양 나오는것 제거
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear {
+  display: none;
+}
+
+// safari autocomplete off
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[readonly] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.pc-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #aaa transparent;
+  &::-webkit-scrollbar {
+    width: 0.6rem;
+    position: absolute;
+    left: 0;
+    display: grid !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 0.15rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    opacity: 1;
+  }
+}
