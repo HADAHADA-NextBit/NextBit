@@ -1,7 +1,7 @@
 import { boot } from 'quasar/wrappers';
 import axios, { AxiosInstance } from 'axios';
 import { Dialog, LocalStorage, SessionStorage } from 'quasar';
-import { useAuthStore } from 'src/stores/auth';
+import { useAuthStore } from 'src/stores/auth-store';
 import { i18n } from 'src/boot/i18n';
 
 declare module '@vue/runtime-core' {
@@ -16,10 +16,7 @@ declare module '@vue/runtime-core' {
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-const hostname =
-  process.env.NODE_ENV === 'development'
-    ? 'http://zhkrk.asuscomm.com:8050'
-    : 'http://zhkrk.asuscomm.com:8050';
+const hostname = process.env.NODE_ENV === 'development' ? '' : '';
 
 const client = axios.create({ baseURL: `${hostname}/api/user/v1` });
 

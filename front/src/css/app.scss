@@ -1,6 +1,5 @@
-@import './_variables.scss';
-@import './_reset.scss';
-@import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css';
+@import './_reset';
+@import './properties';
 
 .ASK {
   color: #1261c4;
@@ -10,13 +9,24 @@
   color: #d24f45;
 }
 
-.q-btn {
-  border-radius: 0 !important;
-  padding: 0;
+.main-layout {
+  max-width: 1440px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.main-bg {
+  background-color: $light-02;
+}
+
+.body--dark {
+  .main-bg {
+    background-color: $dark-02;
+  }
 }
 
 @media (max-width: 992px) {
-  .q-btn {
-    font-size: 1.1rem;
-  }
 }

@@ -1,78 +1,37 @@
-// Quasar SCSS (& Sass) Variables
-// --------------------------------------------------
-// To customize the look and feel of this app, you can override
-// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
-
-// Check documentation for full list of Quasar variables
-
-// Your own variables (that are declared here) and Quasar's own
-// ones will be available out of the box in your .vue/.scss/.sass files
-
-// It's highly recommended to change the default colors
-// to match your app's branding.
-// Tip: Use the "Theme Builder" on Quasar's documentation website.
-
-$primary: #1976d2;
-$secondary: #26a69a;
-$accent: #9c27b0;
-
-$white-component-border: #eee;
-
-$dark: #000;
-$dark-page: #121212;
-$dark-component: #0d131a;
-$dark-component-border: #1e2939;
-$dark-chart-ask-color: #0e1b2b;
-$dark-chart-ask-bar-color: #0f3460;
-$dark-chart-bid-color: #291b1d;
-$dark-chart-bid-bar-color: #763632;
-$dark-component-select-color: #151c29;
-
-$border-bottom-color: #0062df;
-
-$positive: #21ba45;
-$negative: #c10015;
-$info: #31ccec;
-$warning: #f2c037;
 // font
-$Spoqa: 'Spoqa Han Sans Neo', sans-serif;
-$Russo: 'Russo One', sans-serif;
 
 // color
-$yellow1: #f7c535;
+$light-01: #7338ac;
+$light-02: #705bfa;
+$light-03: #c88efb;
+$light-04: #abc0f0;
 
-$red_1: #ff5d5d;
-$danger-color: #ff4500;
-$danger-color-10: #ff7e4e;
-$danger-color-20: #c6000f;
-$danger-color-30: #ffb194;
+$dark-01: #b5b5b5;
+$dark-02: #150930;
+$dark-03: #202031;
+$dark-04: #362e57;
+$dark-05: #1e1e1e;
+$dark-06: #151515;
+$dark-07: #666666;
 
-$emerald-color: #00d1a8;
-$emerald-color-10: #00fbc6;
-$emerald-color-20: #dbfff6;
-$emerald-color-30: #009d7e;
-$emerald-color-40: #009d8b;
+$negative: #1261c4;
+$positive: #d24f45;
 
-$dark-color: #191919;
-$dark-color-10: #262626;
-$dark-color-20: #333;
-
-$dark2: #d9d9d9;
-$dark3: #8e8e8e;
-$dark4: #bdbdbd;
-$dark5: #e6e6e6;
-$dark6: #f2f2f2;
-$dark-rgb: '25,25,25';
-
-$gray-color: #555;
-$gray-color-10: #828282;
-$gray-color-20: #bdbdbd;
-$gray-color-30: #c4c4c4;
-
-$white-color: #fff;
-$light-color: #e6e6e6;
-$light-color-10: #fafafc;
-$light-color-20: #f2f2f2;
+$custom-colors: (
+  'light-01': $light-01,
+  'light-02': $light-02,
+  'light-03': $light-03,
+  'light-04': $light-04,
+  'dark-01': $dark-01,
+  'dark-02': $dark-02,
+  'dark-03': $dark-03,
+  'dark-04': $dark-04,
+  'dark-05': $dark-05,
+  'dark-06': $dark-06,
+  'dark-07': $dark-07,
+  'negative': $negative,
+  'positive': $positive,
+);
 
 // $base-font: 'Spoqa Han Sans Neo', 'sans-serif';
 

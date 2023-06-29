@@ -2,19 +2,26 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  line-height: 1;
 }
 
 html {
   font-size: 10px;
-  color: $dark-color;
+  color: $dark-05;
   overflow-x: hidden;
   width: 100%;
 }
 
 body {
-  font-size: 1.4rem;
+  font-size: 14px;
   font-family: inherit;
-  padding-top: 5rem;
+  // padding-top: 60px;
+  // padding-bottom: 150px;
+  // min-height: 100vh;
+
+  &.body--dark {
+    background-color: $dark-03;
+  }
 
   * {
     &:focus {

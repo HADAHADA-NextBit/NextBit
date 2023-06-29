@@ -3,11 +3,11 @@
     v-model="$i18n.locale"
     :options="langOptions"
     dense
-    borderless
     emit-value
     map-options
+    borderless
     options-dense
-    style="min-width: 80px; padding: 0.5rem"
+    class="translate-lang"
   />
 </template>
 
@@ -23,3 +23,12 @@ const langOptions = appLanguages.map((lang) => ({
   value: lang.isoName,
 }));
 </script>
+
+<style lang="scss">
+.translate-lang {
+  .q-field__native,
+  .q-field__append {
+    color: white !important;
+  }
+}
+</style>

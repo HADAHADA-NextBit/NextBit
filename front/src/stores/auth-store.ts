@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import axios from 'axios';
 import { SessionStorage } from 'quasar';
 
 export const useAuthStore = defineStore({

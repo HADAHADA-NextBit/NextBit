@@ -7,6 +7,7 @@ export const useCommonStore = defineStore({
     darkMode: false,
     exchangeNavShow: false,
     ajaxBar: false,
+    language: 'ko',
   }),
   actions: {
     setDarkMode(darkMode: boolean) {
@@ -17,6 +18,9 @@ export const useCommonStore = defineStore({
     },
     setAjaxBar(active: boolean) {
       this.ajaxBar = active;
+    },
+    setLanguage(lang: string) {
+      this.language = lang;
     },
   },
 });

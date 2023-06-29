@@ -1,52 +1,100 @@
 <template>
-  <Navigation />
-  <router-view />
-  <!-- <q-ajax-bar
-    ref="bar"
-    position="top"
-    color="blue"
-    size="10px"
-    skip-hijack
-    style="top: 5rem"
-  /> -->
-  <q-ajax-bar
-    ref="bar2"
-    position="bottom"
-    color="accent"
-    size="10px"
-    :hijack-filter="filterFn"
-  />
+  <!-- <NavigationHeader /> -->
+  <q-layout view="hHh Lpr fFf" container style="height: 100vh" class="shadow-2">
+    <q-header elevated :class="$q.dark.isActive ? 'bg-dark-02' : 'bg-light-02'">
+      <q-toolbar class="glossy pa-0">
+        <q-btn
+          flat
+          @click="drawer = !drawer"
+          icon="menu"
+          class="pa-15"
+          size="16px"
+        />
+
+        <q-space />
+
+        <q-toolbar-title class="text-center">
+          <q-icon name="img:/logo.svg" size="35px" />
+        </q-toolbar-title>
+
+        <q-space />
+
+        <NavigationFab />
+      </q-toolbar>
+    </q-header>
+
+    <q-footer elevated reveal>
+      <q-toolbar
+        class="glossy-down"
+        :class="$q.dark.isActive ? 'bg-dark-02' : 'bg-light-02'"
+      >
+        <q-toolbar-title>Footer</q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
+
+    <q-drawer
+      v-model="drawer"
+      show-if-above
+      :mini="miniState"
+      @mouseover="miniState = false"
+      @mouseout="miniState = true"
+      mini-to-overlay
+      :width="200"
+      :breakpoint="768"
+      :class="$q.dark.isActive ? 'bg-dark-02' : 'bg-light-02'"
+      class="glossy-left text-white"
+    >
+      <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: '0' }">
+        <q-list padding>
+          <q-item
+            clickable
+            v-ripple
+            v-for="page in pages"
+            :key="page.name"
+            :to="page.name"
+            :active="page.name === $router.currentRoute.value.name"
+          >
+            <q-item-section avatar>
+              <q-icon :name="page.icon" />
+            </q-item-section>
+
+            <q-item-section> {{ $t(`word.${page.name}`) }} </q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
+    </q-drawer>
+
+    <q-page-container>
+      <q-page padding>
+        <RouterView />
+      </q-page>
+    </q-page-container>
+  </q-layout>
+  <!-- <MainFooter /> -->
 </template>
 
 <script setup lang="ts">
-import Navigation from 'src/components/Navigation.vue';
-import { useBinanceStore } from 'src/stores/binance';
-import { useCommonStore } from './stores/common';
 import { onMounted, ref, watch, computed } from 'vue';
+import NavigationHeader from 'src/components/NavigationHeader.vue';
+import MainFooter from 'src/components/MainFooter.vue';
+import NavigationFab from 'src/components/NavigationFab.vue';
+import { pages } from 'src/router/routes';
 
-const bar = ref();
-const bar2 = ref();
-const commonStore = useCommonStore();
-const ajaxBar = computed(() => commonStore.ajaxBar);
-const binance = useBinanceStore();
-
-// watch(ajaxBar, () => {
-//   if (ajaxBar.value) {
-//     bar.value.start();
-//   } else {
-//     bar.value.stop();
-//   }
-// });
-
-const filterFn = (url: string) => {
-  console.log(url);
-  console.log(!/^https:\/\/api.upbit.com\/v1\/candles\/minutes/.test(url));
-  return !/^https:\/\/api.upbit.com\/v1\/candles\/minutes/.test(url);
-};
-
-onMounted(() => {
-  binance.socketBinance();
-  console.log('here');
-  binance.getSocketBinance();
-});
+const drawer = ref(false);
+const miniState = ref(false);
 </script>
+
+<style lang="scss">
+.q-page {
+  max-width: 1440px;
+  margin: auto;
+}
+
+.q-list {
+  .q-item--active {
+    color: white;
+    font-weight: bold;
+    -webkit-text-stroke: 0.5px #000;
+  }
+}
+</style>

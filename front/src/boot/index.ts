@@ -1,14 +1,11 @@
 import { boot } from 'quasar/wrappers';
-import { useCommonStore } from 'src/stores/common';
-import { useSocketUpbitStore } from 'src/stores/socket-upbit';
-import { useBinanceStore } from 'src/stores/binance';
+import { useCommonStore } from 'src/stores/common-store';
+import { useChartStore } from 'src/stores/chart-store';
 
 const commonStore = useCommonStore();
-const upbitStore = useSocketUpbitStore();
-const binanceStore = useBinanceStore();
+const chartStore = useChartStore();
 
 export default boot(({ app }) => {
   app.config.globalProperties.$commonStore = commonStore;
-  app.config.globalProperties.$upbitStore = upbitStore;
-  app.config.globalProperties.$binanceStore = binanceStore;
+  app.config.globalProperties.$chartStore = chartStore;
 });
