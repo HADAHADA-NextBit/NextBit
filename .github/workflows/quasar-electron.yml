@@ -2,10 +2,7 @@ name: Quasar Electron Build and Release
 
 on: 
   push:
-    paths:
-      - "front"
     branches: master
-
 
 jobs:
   build-capacitor:
@@ -14,6 +11,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: front
 
     strategy:
       matrix:
