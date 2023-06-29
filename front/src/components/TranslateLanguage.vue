@@ -28,7 +28,7 @@ const langOptions = appLanguages.map((lang) => ({
 .translate-lang {
   .q-field__native,
   .q-field__append {
-    color: white !important;
+    color: white;
   }
 }
 </style>
