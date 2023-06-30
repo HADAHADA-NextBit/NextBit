@@ -2,7 +2,7 @@
   <!-- <NavigationHeader /> -->
   <q-layout view="hHh Lpr fFf" container style="height: 100vh" class="shadow-2">
     <q-header elevated :class="$q.dark.isActive ? 'bg-dark-02' : 'bg-light-02'">
-      <q-toolbar class="glossy pa-0">
+      <q-toolbar class="glossy pa-0" style="height: 60px">
         <q-btn
           flat
           @click="drawer = !drawer"
@@ -13,8 +13,10 @@
 
         <q-space />
 
-        <q-toolbar-title class="text-center">
-          <q-icon name="img:/logo.svg" size="35px" />
+        <q-toolbar-title class="text-center full-height">
+          <q-btn :to="{ name: 'home' }" unelevated class="full-height">
+            <q-icon name="img:/logo.svg" size="35px" />
+          </q-btn>
         </q-toolbar-title>
 
         <q-space />
@@ -74,14 +76,50 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch, computed } from 'vue';
-import NavigationHeader from 'src/components/NavigationHeader.vue';
-import MainFooter from 'src/components/MainFooter.vue';
+import { onBeforeMount, ref, watch, computed } from 'vue';
+// import NavigationHeader from 'src/components/NavigationHeader.vue';
+// import MainFooter from 'src/components/MainFooter.vue';
 import NavigationFab from 'src/components/NavigationFab.vue';
 import { pages } from 'src/router/routes';
+import axios from 'axios';
+import { SessionStorage } from 'quasar';
 
 const drawer = ref(false);
 const miniState = ref(false);
+
+onBeforeMount(async () => {
+  const request = axios.create();
+
+  const code = new URL(location.href).searchParams.get('code');
+  const platform = SessionStorage.getItem('platform');
+  try {
+    if (platform === 'kakao') {
+      const res = await request.post(
+        `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.KAKAO_REST_KEY}&redirect_uri=${process.env.REDIRECT}&code=${code}`
+      );
+
+      const info = await request.get(
+        'https://kapi.kakao.com/v1/user/access_token_info',
+        {
+          headers: { Authorization: `Bearer ${res.data.access_token}` },
+        }
+      );
+    } else if (platform === 'naver') {
+      new URLSearchParams(location.href.split('#')[1]).get('access_token');
+
+      // const res = await request.get(
+      //   `https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=${process.env.NAVER_CLIENT}&client_secret=${process.env.NAVER_SECRET}&code=${code}&state=${state}`
+      // );
+
+      // console.log(res);
+    }
+  } finally {
+    setTimeout(() => {
+      // history.replaceState({}, '', location.pathname);
+      // SessionStorage.remove('platform');
+    }, 100);
+  }
+});
 </script>
 
 <style lang="scss">

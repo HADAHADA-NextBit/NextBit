@@ -1,10 +1,20 @@
 export default {
+  'input.hint.confirm_password': 'Please enter the same password.',
+  'input.hint.identity': 'Please enter within 4-16 characters.',
+  'input.hint.password': 'Please enter within 8 to 15 characters including special characters.',
+  'word.confirm_password': 'Confirm password',
   'word.customer': 'Customer Center',
+  'word.easy_login': 'Easy login',
+  'word.easy_signup': 'Easy signup',
   'word.exchange': 'Exchange',
   'word.home': 'Home',
+  'word.identity': 'Identity',
   'word.login': 'Login',
   'word.news': 'News',
+  'word.nickname': 'Nickname',
   'word.notice': 'Notice',
+  'word.password': 'Password',
   'word.reset': 'Reset',
+  'word.signup': 'Sign up',
   'word.wallet': 'Wallet'
 }

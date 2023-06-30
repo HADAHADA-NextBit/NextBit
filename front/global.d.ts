@@ -1,6 +1,10 @@
 export {};
 
 declare global {
+  interface Window {
+    naver: any;
+  }
+
   type SendParams = {
     url: string;
     method: 'GET' | 'POST' | 'PUT' | 'DELETE';

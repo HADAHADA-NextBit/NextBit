@@ -21,7 +21,7 @@
         class="full-width"
         no-caps
         unelevated
-        @click="loginDialog"
+        @click="signDialog"
       >
         <template v-slot:icon>
           <q-icon name="login" size="30px" />
@@ -57,13 +57,14 @@ import { ref } from 'vue';
 import { useQuasar } from 'quasar';
 import ThemeSwitch from 'src/components/ThemeSwitch.vue';
 import TranslateLanguage from 'src/components/TranslateLanguage.vue';
-import LoginDialog from 'src/components/dialog/LoginDialog.vue';
+import SignDialog from 'src/components/dialog/SignDialog.vue';
+import { SessionStorage } from 'quasar';
 
 const $q = useQuasar();
 const fabState = ref(false);
 
-const loginDialog = () => {
-  $q.dialog({ component: LoginDialog });
+const signDialog = () => {
+  $q.dialog({ component: SignDialog });
 };
 </script>
 

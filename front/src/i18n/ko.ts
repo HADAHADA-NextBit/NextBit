@@ -1,10 +1,20 @@
 export default {
+  'input.hint.confirm_password': '같은 비밀번호를 입력해주세요.',
+  'input.hint.identity': '4~16 글자 내로 입력해주세요.',
+  'input.hint.password': '특수 문자를 포함한 8~15 글자 내로 입력해주세요.',
+  'word.confirm_password': '비밀번호 확인',
   'word.customer': '고객센터',
+  'word.easy_login': '간편 로그인',
+  'word.easy_signup': '간편 회원가입',
   'word.exchange': '거래소',
   'word.home': '홈',
+  'word.identity': '아이디',
   'word.login': '로그인',
   'word.news': '뉴스',
+  'word.nickname': '닉네임',
   'word.notice': '공지사항',
+  'word.password': '비밀번호',
   'word.reset': '초기화',
+  'word.signup': '회원가입',
   'word.wallet': '지갑'
 }
