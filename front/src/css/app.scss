@@ -22,6 +22,12 @@
   background-color: $light-02;
 }
 
+.default-dialog {
+  min-width: 320px;
+  max-width: 500px;
+  width: 100%;
+}
+
 .body--dark {
   .main-bg {
     background-color: $dark-02;

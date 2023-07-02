@@ -1,9 +1,8 @@
 <template>
-  <q-dialog persistent>
+  <q-dialog persistent ref="dialogRef">
     <q-card
-      style="min-width: 320px; max-width: 500px; width: 100%"
       :class="$q.dark.isActive ? 'bg-dark-08' : 'bg-light-02'"
-      class="text-white"
+      class="default-dialog text-white"
     >
       <q-card-section class="row items-center q-pb-none">
         <q-space />
@@ -167,18 +166,20 @@
             padding="0"
             unelevated
             round
+            style="overflow: hidden"
             v-for="platform in easy"
             :key="platform.text"
-            class="shadow-10"
             :href="platform.link"
             @click="
               [SessionStorage.set('platform', platform.text), platform.click()]
             "
           >
-            <q-icon :name="`img:/icons/${platform.text}.svg`" size="40px" />
+            <q-icon :name="`img:/icons/${platform.icon}`" size="40px" />
           </q-btn>
 
           <div id="naverIdLogin" style="display: none"></div>
+
+          <div id="buttonDiv"></div>
         </div>
       </q-card-section>
     </q-card>
@@ -186,9 +187,12 @@
 </template>
 
 <script setup lang="ts">
-import { SessionStorage } from 'quasar';
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { useQuasar, SessionStorage, useDialogPluginComponent } from 'quasar';
+import { onMounted, ref } from 'vue';
+import { parseJwt } from 'src/utils/rule';
 
+const $q = useQuasar();
+const { dialogRef, onDialogOK } = useDialogPluginComponent();
 const type = ref('login');
 const setFormState = () => {
   return {
@@ -209,6 +213,7 @@ const loginSubmit = async () => {
 const easy = [
   {
     text: 'kakao',
+    icon: 'kakao.svg',
     link: `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_REST_KEY}&redirect_uri=${process.env.REDIRECT}&response_type=code`,
     click: () => {
       //
@@ -216,20 +221,9 @@ const easy = [
   },
   {
     text: 'naver',
+    icon: $q.dark.isActive ? 'naver-dark.png' : 'naver-light.png',
     click: () => {
       document.getElementById('naverIdLogin_loginButton')?.click();
-    },
-  },
-  {
-    text: 'google',
-    click: () => {
-      //
-    },
-  },
-  {
-    text: 'apple',
-    click: () => {
-      //
     },
   },
 ];
@@ -246,9 +240,36 @@ const naver = () => {
   naverLogin.init();
 };
 
+const handleCredentialResponse = (response: any) => {
+  const result = parseJwt(response.credential);
+
+  console.log('ID: ' + result.sub);
+  console.log('Full Name: ' + result.name);
+  console.log('Given Name: ' + result.given_name);
+  console.log('Family Name: ' + result.family_name);
+  console.log('Image URL: ' + result.picture);
+  console.log('Email: ' + result.email);
+
+  onDialogOK();
+};
+
+const googleLogin = () => {
+  window.google.accounts.id.initialize({
+    client_id: process.env.GOOGLE_CLIENT,
+    callback: handleCredentialResponse,
+  });
+  window.google.accounts.id.renderButton(document.getElementById('buttonDiv'), {
+    theme: 'outline',
+    size: 'large',
+    shape: 'circle',
+    type: 'icon',
+  });
+};
+
 onMounted(() => {
   setTimeout(() => {
     naver();
+    googleLogin();
   });
 });
 </script>

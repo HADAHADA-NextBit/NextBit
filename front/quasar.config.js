@@ -37,7 +37,7 @@ module.exports = configure(function (ctx) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v5',
-      // 'fontawesome-v6',
+      'fontawesome-v6',
       // 'eva-icons',
       // 'themify',
       // 'line-awesome',
@@ -68,6 +68,9 @@ module.exports = configure(function (ctx) {
         KAKAO_REST_KEY: '1d328b2f2ef5ac2c0a939111f8dbff89',
         NAVER_CLIENT: '9KzKDZ9WdEMEzNINoErZ',
         NAVER_SECRET: 'MC074iCW_8',
+        GOOGLE_CLIENT:
+          '1035594217162-kprcuoamukisv3lraru728q5iss68ilq.apps.googleusercontent.com',
+        GOOGLE_SECURITY: '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',
         REDIRECT: ctx.dev ? 'http://localhost:9000' : 'http://localhost:9000',
       },
       // rawDefine: {}

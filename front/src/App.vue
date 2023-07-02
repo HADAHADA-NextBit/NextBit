@@ -1,8 +1,8 @@
 <template>
   <!-- <NavigationHeader /> -->
-  <q-layout view="hHh Lpr fFf" container style="height: 100vh" class="shadow-2">
+  <q-layout view="hHh Lpr fFf" class="shadow-2">
     <q-header elevated :class="$q.dark.isActive ? 'bg-dark-02' : 'bg-light-02'">
-      <q-toolbar class="glossy pa-0" style="height: 60px">
+      <q-toolbar class="glossy pa-0 pr-20" style="height: 60px">
         <q-btn
           flat
           @click="drawer = !drawer"
@@ -40,6 +40,7 @@
       :mini="miniState"
       @mouseover="miniState = false"
       @mouseout="miniState = true"
+      bordered
       mini-to-overlay
       :width="200"
       :breakpoint="768"
@@ -67,7 +68,7 @@
     </q-drawer>
 
     <q-page-container>
-      <q-page padding>
+      <q-page>
         <RouterView />
       </q-page>
     </q-page-container>
@@ -88,10 +89,12 @@ const drawer = ref(false);
 const miniState = ref(false);
 
 onBeforeMount(async () => {
+  const platform = SessionStorage.getItem('platform');
+  if (!platform) return;
   const request = axios.create();
 
   const code = new URL(location.href).searchParams.get('code');
-  const platform = SessionStorage.getItem('platform');
+
   try {
     if (platform === 'kakao') {
       const res = await request.post(
@@ -105,18 +108,14 @@ onBeforeMount(async () => {
         }
       );
     } else if (platform === 'naver') {
-      new URLSearchParams(location.href.split('#')[1]).get('access_token');
-
-      // const res = await request.get(
-      //   `https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=${process.env.NAVER_CLIENT}&client_secret=${process.env.NAVER_SECRET}&code=${code}&state=${state}`
-      // );
-
-      // console.log(res);
+      const token = new URLSearchParams(location.href.split('#')[1]).get(
+        'access_token'
+      );
     }
   } finally {
     setTimeout(() => {
-      // history.replaceState({}, '', location.pathname);
-      // SessionStorage.remove('platform');
+      history.replaceState({}, '', location.pathname);
+      SessionStorage.remove('platform');
     }, 100);
   }
 });

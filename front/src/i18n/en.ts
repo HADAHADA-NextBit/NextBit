@@ -2,6 +2,11 @@ export default {
   'input.hint.confirm_password': 'Please enter the same password.',
   'input.hint.identity': 'Please enter within 4-16 characters.',
   'input.hint.password': 'Please enter within 8 to 15 characters including special characters.',
+  'inquiry.dialog.answer_24': 'We will do our best to answer you as soon as possible.\nThe customer service center is available 24/7. ',
+  'inquiry.help': 'If you leave an inquiry, we will respond.',
+  'notice.description': 'Here we inform you basic guidelines for using our service! \nAfter reading the information writen below, you’ll be able to use NextBit service right away!',
+  'notice.inquiry': 'Need additional information?',
+  'notice.need_to_know': 'Everything you need to know about our service.',
   'word.confirm_password': 'Confirm password',
   'word.customer': 'Customer Center',
   'word.easy_login': 'Easy login',
@@ -9,6 +14,7 @@ export default {
   'word.exchange': 'Exchange',
   'word.home': 'Home',
   'word.identity': 'Identity',
+  'word.inquiry': 'Inquiry',
   'word.login': 'Login',
   'word.news': 'News',
   'word.nickname': 'Nickname',
@@ -16,5 +22,6 @@ export default {
   'word.password': 'Password',
   'word.reset': 'Reset',
   'word.signup': 'Sign up',
+  'word.support': 'Support',
   'word.wallet': 'Wallet'
 }

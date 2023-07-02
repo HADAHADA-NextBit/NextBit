@@ -2,6 +2,11 @@ export default {
   'input.hint.confirm_password': '같은 비밀번호를 입력해주세요.',
   'input.hint.identity': '4~16 글자 내로 입력해주세요.',
   'input.hint.password': '특수 문자를 포함한 8~15 글자 내로 입력해주세요.',
+  'inquiry.dialog.answer_24': '최대한 빨리 답변을 드리도록 최선을 다하겠습니다.\n고객센터는 연중무휴 24시간 운영됩니다.',
+  'inquiry.help': '문의를 남겨주시면 답변드립니다.',
+  'notice.description': '서비스 이용을 위한 기본 가이드라인을 알려드립니다! \n아래에 적힌 정보를 읽으면 바로 넥스트빗 서비스를 사용할 수 있습니다!',
+  'notice.inquiry': '추가 정보가 필요하십니까?',
+  'notice.need_to_know': '넥스트빗 서비스에 대해 알아야 할 모든 것.',
   'word.confirm_password': '비밀번호 확인',
   'word.customer': '고객센터',
   'word.easy_login': '간편 로그인',
@@ -9,6 +14,7 @@ export default {
   'word.exchange': '거래소',
   'word.home': '홈',
   'word.identity': '아이디',
+  'word.inquiry': '문의하기',
   'word.login': '로그인',
   'word.news': '뉴스',
   'word.nickname': '닉네임',
@@ -16,5 +22,6 @@ export default {
   'word.password': '비밀번호',
   'word.reset': '초기화',
   'word.signup': '회원가입',
+  'word.support': '지원',
   'word.wallet': '지갑'
 }
