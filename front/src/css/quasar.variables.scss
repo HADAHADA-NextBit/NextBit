@@ -5,6 +5,7 @@ $light-01: #7338ac;
 $light-02: #705bfa;
 $light-03: #c88efb;
 $light-04: #abc0f0;
+$light-05: #8674ff;
 
 $dark-01: #b5b5b5;
 $dark-02: #150930;
@@ -14,6 +15,7 @@ $dark-05: #1e1e1e;
 $dark-06: #151515;
 $dark-07: #666666;
 $dark-08: #191919;
+$dark-09: #1b1b2e;
 
 $gray-01: #a1a1a1;
 $purple-01: #53389e;
@@ -26,6 +28,7 @@ $custom-colors: (
   'light-02': $light-02,
   'light-03': $light-03,
   'light-04': $light-04,
+  'light-05': $light-05,
   'dark-01': $dark-01,
   'dark-02': $dark-02,
   'dark-03': $dark-03,
@@ -34,10 +37,12 @@ $custom-colors: (
   'dark-06': $dark-06,
   'dark-07': $dark-07,
   'dark-08': $dark-08,
+  'dark-09': $dark-09,
   'gray-01': $gray-01,
   'purple-01': $purple-01,
   'negative': $negative,
   'positive': $positive,
+  'inherit': inherit,
 );
 
 // $base-font: 'Spoqa Han Sans Neo', 'sans-serif';

@@ -2,7 +2,7 @@
   <!-- <NavigationHeader /> -->
   <q-layout view="hHh Lpr fFf" class="shadow-2">
     <q-header elevated :class="$q.dark.isActive ? 'bg-dark-02' : 'bg-light-02'">
-      <q-toolbar class="glossy pa-0 pr-20" style="height: 60px">
+      <q-toolbar class="glossy pa-0" style="height: 60px">
         <q-btn
           flat
           @click="drawer = !drawer"
@@ -68,7 +68,7 @@
     </q-drawer>
 
     <q-page-container>
-      <q-page>
+      <q-page style="padding: 0 10px">
         <RouterView />
       </q-page>
     </q-page-container>

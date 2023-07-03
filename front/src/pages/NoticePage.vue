@@ -1,20 +1,20 @@
 <template>
   <div class="notice-wrap">
     <div
-      class="notice-desc-container text-white"
+      class="default-container text-white"
       :class="$q.dark.isActive ? 'bg-dark-02' : 'bg-light-02'"
     >
-      <div class="fs-40">
+      <div class="container-title">
         {{ $t('word.notice') }}
       </div>
-      <div class="fs-20 mt-30 column">
+      <div class="container-description">
         <div class="lh-30">{{ $t('notice.description').split('\n')[0] }}</div>
         <div class="lh-30">{{ $t('notice.description').split('\n')[1] }}</div>
       </div>
     </div>
 
-    <div class="notice-info-wrap">
-      <div class="notice-image-area column">
+    <div class="default-info-wrap">
+      <div class="left column">
         <div class="text-light-01 fs-15 text-weight-bold mb-20">
           {{ $t('word.support') }}
         </div>
@@ -27,14 +27,14 @@
         <q-img src="/public/icons/notice.png" />
       </div>
 
-      <div class="notice-info-area spacing-y-xl pa-30">
+      <div class="right spacing-y-xl pa-30">
         <div v-for="(test, index) in 5" :key="test">
           <div class="mb-10 fs-20">{{ index + 1 }}. {{ test }}</div>
 
           <div class="fs-12 pl-20">내용 {{ test }}</div>
         </div>
 
-        <div class="row justify-end">
+        <div class="row justify-center">
           <q-pagination
             v-model="pagination.skip"
             :max="pagination.total"
@@ -43,6 +43,8 @@
             :text-color="$q.dark.isActive ? 'white' : 'black'"
             active-color="none"
             active-text-color="light-02"
+            @update:model-value="controlPagination"
+            class="mt-30"
           />
         </div>
       </div>
@@ -54,13 +56,16 @@
       style="max-width: 1000px"
     >
       <div class="fs-40 mb-30 text-white">{{ $t('notice.inquiry') }}</div>
+
       <div class="mb-35 text-white">{{ $t('inquiry.help') }}</div>
+
       <div>
         <q-btn
           @click="$q.dialog({ component: InquiryDialog })"
           :label="$t('word.inquiry')"
           color="white"
           text-color="black"
+          push
         />
       </div>
     </div>
@@ -75,35 +80,26 @@ const pagination = ref({
   total: 5,
   skip: 1,
 });
+
+const controlPagination = (skip: number) => {
+  console.log(skip - 1);
+};
 </script>
 
 <style scoped lang="scss">
 .notice-wrap {
   margin-bottom: 50px;
 }
-.notice-desc-container {
-  padding: 70px 80px;
-  font-weight: 700;
-}
 
-.notice-info-wrap {
-  padding: 70px 80px;
-  display: flex;
-
-  .notice-image-area {
-    width: 35%;
-  }
-
-  .notice-info-area {
-    width: 60%;
+.default-info-wrap {
+  .right {
     border: 1px solid #000;
-    margin-left: 5%;
     border-radius: 10px;
   }
 }
 
 .body--dark {
-  .notice-info-area {
+  .right {
     border: 1px solid #fff;
   }
 }
