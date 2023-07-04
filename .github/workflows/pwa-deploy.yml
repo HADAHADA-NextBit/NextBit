@@ -1,4 +1,4 @@
-name: Vue Build and Deploy to S3
+name: Vue Build and Deploy
 
 on: 
   push:
