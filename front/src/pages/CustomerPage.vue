@@ -32,7 +32,7 @@
           {{ $t('customer.need_to_know').split('\n')[index] }}
         </div>
 
-        <q-img src="/public/icons/faq.png" style="max-width: 430px" />
+        <q-img src="/icons/faq.png" style="max-width: 430px" />
       </div>
 
       <div class="customer-info-area spacing-y-xl pa-20">
