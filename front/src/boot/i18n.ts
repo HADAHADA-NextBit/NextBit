@@ -19,9 +19,12 @@ if (LocalStorage.getItem<ILocaleList>('lang')) {
 export type MessageLanguages = keyof typeof messages;
 export type MessageSchema = typeof messages['en-US'];
 
+/* eslint-disable @typescript-eslint/no-empty-interface */
 declare module 'vue-i18n' {
   export interface DefineLocaleMessage extends MessageSchema {}
+
   export interface DefineDateTimeFormat {}
+
   export interface DefineNumberFormat {}
 }
 /* eslint-enable @typescript-eslint/no-empty-interface */
