@@ -1,18 +1,23 @@
-name: Vue Build and Deploy
+name: Vue Build and Deploy to S3
 
 on: 
   push:
-    branches: 
-      - main
+    branches: main
 
 jobs:
   build:
+    runs-on: ${{ matrix.os-versions }}
+  
     defaults:
-       run:
-         shell: bash
-         working-directory: front
-    name: Build and Deploy
-    runs-on: ubuntu-latest
+      run:
+        shell: bash
+        working-directory: front
+
+    strategy:
+      matrix:
+        os-versions: [ubuntu-latest]
+        node-versions: [10.x]
+
     steps:
       - name: Checkout source code.
       - uses: actions/checkout@v2
