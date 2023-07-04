@@ -5,12 +5,11 @@ on:
     branches: main
 
 jobs:
-
   build:
     defaults:
-           run:
-             shell: bash
-             working-directory: front
+       run:
+         shell: bash
+         working-directory: front
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
