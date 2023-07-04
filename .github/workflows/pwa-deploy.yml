@@ -17,9 +17,8 @@ jobs:
       - uses: actions/checkout@v2
           
       - name: Install dependencies
-        run: npm install pnpm -g
-	      run: pnpm add @quasar/cli -g
-      
+        run: npm install pnpm -g && pnpm add @quasar/cli -g
+	
       - name: Build
         run: pnpm run build:pwa
     
