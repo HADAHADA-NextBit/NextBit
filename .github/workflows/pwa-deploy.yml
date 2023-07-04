@@ -14,10 +14,24 @@ jobs:
         working-directory: front
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
           
       - name: Install dependencies
-        run: npm install pnpm -g && pnpm add @quasar/cli -g
+        run: pnpm add @quasar/cli -g && pnpm install
+
       - name: Build
         run: pnpm run build:pwa
     
