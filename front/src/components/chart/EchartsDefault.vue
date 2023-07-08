@@ -1,5 +1,5 @@
 <template>
-  <v-chart :option="props.bindingOptions" autoresize />
+  <v-chart :option="props.options" autoresize />
 </template>
 
 <script setup lang="ts">
@@ -21,7 +21,7 @@ const props = defineProps({
     type: String,
     default: 'white',
   },
-  bindingOptions: Object,
+  options: Object,
 });
 
 use([

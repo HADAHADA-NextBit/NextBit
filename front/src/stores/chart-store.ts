@@ -31,7 +31,7 @@ export const useChartStore = defineStore({
         tradeSocket.send(
           `${JSON.stringify([
             { ticket: 'trade' },
-            { type: 'trade', codes: ['KRW-BTC'] },
+            { type: 'trade', codes: [this.selectCoin] },
             { format: 'SIMPLE' },
           ])}`
         );

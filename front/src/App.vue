@@ -3,11 +3,11 @@
   <q-layout view="hHh Lpr fFf" class="shadow-2">
     <q-header elevated :class="$q.dark.isActive ? 'bg-dark-02' : 'bg-light-02'">
       <q-toolbar class="glossy pa-0" style="height: 60px">
-        <q-btn
+        <q-fab
           flat
           @click="drawer = !drawer"
-          icon="menu"
-          class="pa-15"
+          icon="chevron_left"
+          active-icon="chevron_right"
           size="16px"
         />
 
@@ -68,7 +68,7 @@
     </q-drawer>
 
     <q-page-container>
-      <q-page style="padding: 0 10px">
+      <q-page style="padding: 20px">
         <RouterView />
       </q-page>
     </q-page-container>
@@ -86,7 +86,7 @@ import axios from 'axios';
 import { SessionStorage } from 'quasar';
 
 const drawer = ref(false);
-const miniState = ref(false);
+const miniState = ref(true);
 
 onBeforeMount(async () => {
   const platform = SessionStorage.getItem('platform');

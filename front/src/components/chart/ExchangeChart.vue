@@ -1,19 +1,14 @@
 <template>
-  <div class="chart-wrap" :class="{ 'bg-dark': useCommonStore().darkMode }">
-    <EchartsDefault
-      :bindingOptions="bindingOptions"
-      style="width: 100%; height: 500px"
-    />
-  </div>
+  <EchartsDefault :options="options" style="width: 100%; height: 400px" />
 </template>
 
 <script setup lang="ts">
 import dayjs from 'dayjs';
 import axios from 'axios';
-import { ref, onBeforeMount, watch, onUnmounted, computed } from 'vue';
+import { ref, onBeforeMount, watch, computed } from 'vue';
 import { useCommonStore } from 'src/stores/common-store';
 import { useChartStore } from 'src/stores/chart-store';
-import EchartsDefault from 'src/components/EchartsDefault.vue';
+import EchartsDefault from 'src/components/chart/EchartsDefault.vue';
 import { colors } from 'src/utils/rule';
 
 const chart = useChartStore();
@@ -24,12 +19,12 @@ const candleVolume = ref<{ [key: string]: number[] }>({});
 const tradeData = computed(() => chart.tradeData);
 const stop = ref(false);
 
-const bindingOptions = ref({
+const options = ref({
   animationDuration: 100,
   animationDurationUpdate: 100,
   title: {
-    text: chart.coinFullName[locale.value],
-    subtext: 'KRW-BTC',
+    // text: chart.coinFullName[locale.value],
+    // subtext: 'KRW-BTC',
     left: 'center',
     top: 40,
     textStyle: {
@@ -107,14 +102,14 @@ const bindingOptions = ref({
     {
       left: 20,
       right: 80,
-      top: 110,
-      height: 200,
+      top: 10,
+      height: 290,
     },
     {
       left: 20,
       right: 80,
-      height: 80,
-      top: 340,
+      height: 60,
+      top: 310,
     },
   ],
   dataZoom: [
@@ -127,7 +122,6 @@ const bindingOptions = ref({
   ],
   series: [
     {
-      name: 'Volume',
       type: 'bar',
       xAxisIndex: 1,
       yAxisIndex: 1,
@@ -211,14 +205,14 @@ const getCandleAPI = async (count = 50) => {
     ];
   }
 
-  bindingOptions.value.xAxis.forEach((axis) => {
+  options.value.xAxis.forEach((axis) => {
     axis.data = Object.keys(candleData.value);
   });
-  bindingOptions.value.series[0].data = Object.values(candleVolume.value);
-  bindingOptions.value.series[1].data = Object.values(candleData.value);
+  options.value.series[0].data = Object.values(candleVolume.value);
+  options.value.series[1].data = Object.values(candleData.value);
 
   updateMarkLine(
-    bindingOptions.value.series[1].markLine,
+    options.value.series[1].markLine,
     Object.values(candleData.value)[Object.values(candleData.value).length - 1],
     ([tp, op]) => (tp === op ? colors.same : tp > op ? colors.up : colors.down)
   );
@@ -253,23 +247,23 @@ watch(
     kline[2] = Math.min(kline[2], tp);
     kline[3] = Math.max(kline[3], tp);
 
-    updateMarkLine(bindingOptions.value.series[1].markLine, kline, ([tp, op]) =>
+    updateMarkLine(options.value.series[1].markLine, kline, ([tp, op]) =>
       tp === op ? colors.same : tp > op ? colors.up : colors.down
     );
   },
   { deep: true }
 );
 
+const reloadCandle = () => {
+  candleData.value = {};
+  candleVolume.value = {};
+  getCandleAPI();
+};
+
 onBeforeMount(() => {
   getCandleAPI();
-  chart.connectTradeSocket();
-  chart.reloadCandle = getCandleAPI;
+  chart.reloadCandle = reloadCandle;
 });
 </script>
 
-<style scoped lang="scss">
-.chart-wrap {
-  background-color: #fff;
-  margin-bottom: 1rem;
-}
-</style>
+<style scoped lang="scss"></style>

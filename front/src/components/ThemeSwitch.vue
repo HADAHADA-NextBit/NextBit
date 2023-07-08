@@ -23,7 +23,6 @@ watch(darkMode, (darkMode: boolean) => {
   } else {
     LocalStorage.set('dm', String(darkMode));
   }
-  useCommonStore().setDarkMode(darkMode);
 });
 
 onBeforeMount(() => {

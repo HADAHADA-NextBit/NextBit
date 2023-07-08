@@ -16,7 +16,6 @@ declare global {
   };
 
   interface ICommonState {
-    darkMode: boolean;
     exchangeNavShow: boolean;
     ajaxBar: boolean;
     language: string;
@@ -76,6 +75,7 @@ declare global {
     tdt: string;
     ttm: string;
     ty: string;
+    korean_name: string;
   }
 
   interface IMarketResponse {
@@ -117,6 +117,7 @@ declare global {
   }
 
   interface ITradeResponse {
+    [key: string]: any;
     change_price: number;
     sequential_id: number;
     prev_closing_price: number;

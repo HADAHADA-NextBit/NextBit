@@ -58,7 +58,6 @@ import { useQuasar } from 'quasar';
 import ThemeSwitch from 'src/components/ThemeSwitch.vue';
 import TranslateLanguage from 'src/components/TranslateLanguage.vue';
 import SignDialog from 'src/components/dialog/SignDialog.vue';
-import { SessionStorage } from 'quasar';
 
 const $q = useQuasar();
 const fabState = ref(false);
