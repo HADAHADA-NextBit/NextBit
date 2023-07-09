@@ -21,7 +21,12 @@
         :class="{ selected: data.market === chart.selectCoin }"
         v-for="data in markets[selectMarket]"
         :key="data.korean_name"
-        @click="changeCoin(data.market, data.korean_name)"
+        @click="
+          changeCoin(data.market, {
+            ko: data.korean_name,
+            en: data.english_name,
+          })
+        "
       >
         <div class="coin-name-wrap">
           <span class="coin-name">{{ data.korean_name }}</span>
@@ -153,9 +158,9 @@ const changeSort = (sortTarget: string) => {
 //   dataSort('trp');
 // };
 
-const changeCoin = (market: string, name: string) => {
+const changeCoin = (market: string, name: { ko: string; en: string }) => {
   chart.selectCoin = market;
-  chart.coinFullName.ko = name;
+  chart.coinFullName = name;
   // closeTickerSocket();
   // connectTickerSocket(Object.keys(markets.value[selectMarket.value]));
   loadTicker();
