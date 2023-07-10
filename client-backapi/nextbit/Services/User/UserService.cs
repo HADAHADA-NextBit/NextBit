@@ -48,7 +48,7 @@ namespace nextbit.Services.User
         public Databases.Models.User GetUser(string token)
         {
             var user = MongoContext.Users.AsQueryable()
-                .SingleOrDefault(x => x.Token == token);
+                .SingleOrDefault(x => x.Token == token.ExtractToken());
 
             if (user == null)
             {
@@ -61,7 +61,7 @@ namespace nextbit.Services.User
         public Databases.Models.User? GetUserNullable(string token)
         {
             return MongoContext.Users.AsQueryable()
-                .SingleOrDefault(x => x.Token == token);
+                .SingleOrDefault(x => x.Token == token.ExtractToken());
         }
     }
 }

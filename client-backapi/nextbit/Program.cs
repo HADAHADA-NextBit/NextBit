@@ -128,6 +128,8 @@ builder.Services
 
         var issuer = configuration["Jwt:Issuer"];
         var audience = configuration["Jwt:Audience"];
+        var jwtUsersTime = int.Parse(configuration["Jwt:JwtUsersTime"]);
+        //var jwtManagersTime = int.Parse(configuration["Jwt:JwtManagersTime"]);
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidIssuer = issuer,
@@ -138,6 +140,7 @@ builder.Services
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration[$"Jwt:SecretKey"])),
             NameClaimType = JwtRegisteredClaimNames.Sid,
+            ClockSkew = TimeSpan.FromMinutes(jwtUsersTime)
         };
 
         //builder.Services.AddMvc();

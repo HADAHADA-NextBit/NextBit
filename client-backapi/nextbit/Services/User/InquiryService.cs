@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using nextbit.Exceptions;
+using static nextbit.Models.Inquiry;
+using System.Collections.Generic;
 
 namespace nextbit.Services.User
 {
@@ -53,7 +55,7 @@ namespace nextbit.Services.User
                 .Where(x => x.UserId == userId);
         }
 
-        public Models.Inquiry.Single CreateInquiry(
+        public Models.Inquiry.Record CreateInquiry(
             string userId,
             string title,
             string question)
@@ -78,31 +80,76 @@ namespace nextbit.Services.User
 
             MongoContext.Inquiries.InsertOne(inquiry);
 
-            return new Models.Inquiry.Single(title, question);
+            return new Models.Inquiry.Record(title, question);
         }
 
-        public Models.Inquiry.HIstories GetInquiyHistories(string userId)
+        public List<Models.Inquiry.History> GetInquiryHistories(string userId)
+        {
+            var inquiries = GetInquiries(userId);
+            var inquiryAnswers = GetInquiryAnswers(userId);
+            
+            var histories = new List<Models.Inquiry.History>();
+
+            foreach (var inquiry in inquiries)
+            {
+                var answer = inquiryAnswers
+                    .SingleOrDefault(x => x.InquiryId == inquiry.Id);
+
+                var history = new History();
+                history.Title = inquiry.Title;
+                history.Content.Add(new QnA(inquiry, answer));
+
+                histories.Add(history);
+            }
+
+            return histories;
+        }
+
+        public List<Models.Inquiry.History> GetInquiyHistoriesDetails(string userId)
         {
             var inquiries = GetInquiries(userId);
             var inquiryAnswers = GetInquiryAnswers(userId);
             var additionalInquiries = GetAdditionalInquiries(userId);
             var additionalInquiryAnswers = GetAdditionalInquiryAnswers(userId);
 
-            return new Models.Inquiry.HIstories(
-                inquiries,
-                inquiryAnswers,
-                additionalInquiries,
-                additionalInquiryAnswers);
+            var histories = new List<Models.Inquiry.History>();
+
+            foreach (var inquiry in inquiries)
+            {
+                var inquiryAnswerCopy = inquiryAnswers
+                    .SingleOrDefault(x => x.InquiryId == inquiry.Id);
+                var additionalInquiriesCopy = additionalInquiries
+                    .OrderByDescending(x => x.CreatedDate)
+                    .Where(x => x.InquiryId == inquiry.Id);
+                var additionalInquiryAnswersCopy = additionalInquiryAnswers
+                    .OrderByDescending(x => x.CreatedDate)
+                    .Where(x => x.InquiryId == inquiry.Id);
+
+                var history = new History();
+                history.Title = inquiry.Title;
+                history.Content.Add(new QnA(inquiry, inquiryAnswerCopy));
+
+                foreach (var additioanlInquiry in additionalInquiriesCopy)
+                {
+                    additionalInquiryAnswersCopy = additionalInquiryAnswersCopy
+                        .Where(x => x.AdditionalInquiryId == additioanlInquiry.Id);
+
+                    foreach (var additionalAnswer in additionalInquiryAnswersCopy)
+                    {
+                        var qna = new QnA(additioanlInquiry, additionalAnswer);
+                        history.Content.Add(qna);
+                    }
+                }
+
+                history.Content = history.Content.AsQueryable()
+                    .OrderByDescending(x => x.CompletedTime)
+                    .ToList();
+
+                histories.Add(history);
+            }
+
+            return histories;
         }
 
-        public Models.Inquiry.Records GetInquiryRecords(string userId)
-        {
-            var inquiries = GetInquiries(userId);
-            var inquiryAnswers = GetInquiryAnswers(userId);
-
-            return new Models.Inquiry.Records(
-                inquiries,
-                inquiryAnswers);
-        }
     }
 }
