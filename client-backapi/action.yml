@@ -1,0 +1,12 @@
+name: github action for nextbit project
+description: github action for nextbit project
+inputs:
+  input_parameter:
+    description: <Short description of input parameter>
+    required: false
+    default: default value
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    INPUT_PARAMETER: {{ inputs.input_parameter }}

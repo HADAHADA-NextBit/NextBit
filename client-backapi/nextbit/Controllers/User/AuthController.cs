@@ -42,14 +42,17 @@ namespace nextbit.Controllers
 
             if (validation == null)
             {
+                var userSn = userService.GenerateUserSn();
                 var newUser = new Databases.Models.User()
                 {
-                    UserSn = userService.GenerateUserSn(),
+                    UserSn = userSn,
                     Identity = request.Identity,
                     Nickname = request.Nickname,
                     Password = request.Password.ToPasswordHash(),
-                    MemberType = request.MemberType,
-                    IsExternal = (request.MemberType == Databases.Enums.MemberType.Email) ? false : true,
+                    //MemberType = request.MemberType,
+                    //IsExternal = (request.MemberType == Databases.Enums.MemberType.Email) ? false : true,
+                    MemberType = MemberType.Email,
+                    IsExternal = false,
                     CreatedDate = DateTime.UtcNow
                 };
 
@@ -65,7 +68,7 @@ namespace nextbit.Controllers
                 {
                     Token = token,
                     Nickname = request.Nickname,
-                    UserSn = userService.GenerateUserSn(),
+                    UserSn = userSn,
                     Language = Language.Korean,
                     Currency = Currency.WON.ToCurrencySymbol(),  
                 };
@@ -88,12 +91,6 @@ namespace nextbit.Controllers
 
             if (user != null)
             {
-                var token = jwtService.GetAccessToken(user);
-
-                MongoContext.Users.FindOneAndUpdate(
-                    Builders<Databases.Models.User>.Filter.Eq(x => x.Id, user.Id),
-                    Builders<Databases.Models.User>.Update.Set(x => x.Token, token));
-
                 return new Models.Auth.Response(user);
             }
 

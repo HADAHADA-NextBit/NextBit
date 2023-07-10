@@ -43,8 +43,10 @@ namespace nextbit.Controllers
                     Identity = request.Identity,
                     Nickname = request.Nickname,
                     Password = request.Password.ToPasswordHash(),
-                    MemberType = request.MemberType,
-                    IsExternal = (request.MemberType == Databases.Enums.MemberType.Email) ? false : true,
+                    //MemberType = request.MemberType,
+                    //IsExternal = (request.MemberType == Databases.Enums.MemberType.Email) ? false : true,
+                    MemberType = Databases.Enums.MemberType.Email,
+                    IsExternal = false,
                     CreatedDate = DateTime.UtcNow
                 };
 

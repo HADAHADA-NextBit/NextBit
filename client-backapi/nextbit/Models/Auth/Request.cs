@@ -13,7 +13,7 @@ namespace nextbit.Models.Auth
 
             public string Password { get; set; }
 
-            public MemberType MemberType { get; set; }
+            //public MemberType MemberType { get; set; }
         }
 
         public class Login
