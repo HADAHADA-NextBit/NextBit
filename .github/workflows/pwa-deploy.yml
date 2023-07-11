@@ -2,7 +2,10 @@ name: Vue Build and Deploy to S3
 
 on: 
   push:
-    branches: dev-client-front
+    branches:
+     - dev-client-front
+    paths:
+     - 'client-front/**'
 
 jobs:
   build:
