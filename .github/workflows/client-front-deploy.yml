@@ -40,12 +40,12 @@ jobs:
         run: |
           if [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
             pnpm run build:pwa
-            aws s3 sync client-front/dist/pwa s3://${{ secrets.CLIENT_FRONT_AWS_S3_BUCKET }} --acl public-read --delete
+            aws s3 sync dist/pwa s3://${{ secrets.CLIENT_FRONT_AWS_S3_BUCKET }} --acl public-read --delete
             aws cloudfront create-invalidation --distribution-id ${{ secrets.CLIENT_FRONT_AWS_DISTRIBUTION_ID }} --paths "/*"
             aws route53 change-resource-record-sets --hosted-zone-id ${{ secrets.CLIENT_FRONT_AWS_HOSTED_ID }} --change-batch file://route53-changes.json
           elif [[ ${{ github.ref }} == 'refs/heads/dev-client-front' ]]; then
             pnpm run build
-            aws s3 sync client-front/dist/pwa s3://${{ secrets.CLIENT_FRONT_AWS_DEV_S3_BUCKET }} --acl public-read --delete
+            aws s3 sync dist/spa s3://${{ secrets.CLIENT_FRONT_AWS_DEV_S3_BUCKET }} --acl public-read --delete
           fi
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
