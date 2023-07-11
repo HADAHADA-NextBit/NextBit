@@ -1,4 +1,4 @@
-<template>Home Test</template>
+<template>Home Test2</template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
