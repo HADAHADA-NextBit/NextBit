@@ -1,0 +1,18 @@
+{
+  "Comment": "Update DNS record",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": ${{ secrets.CLIENT_FRONT_AWS_S3_BUCKET }},
+        "Type": "A",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": ${{ secrets.CLIENT_FRONT_AWS_CLOUDFRONT_NAME }}
+          }
+        ]
+      }
+    }
+  ]
+}
