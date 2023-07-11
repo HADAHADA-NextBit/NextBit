@@ -1,7 +1,7 @@
 name: Build and Test GitHub actions
 on: 
   push:
-    branches: dev-client-front
+    branches: dev-client-backapi
 
 jobs:
   build_and_test:
