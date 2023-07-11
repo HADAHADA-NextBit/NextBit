@@ -6,7 +6,7 @@ on:
       - main
       - dev-client-front
     paths:
-      - 'client-front/**'
+      - client-front/**
 
 jobs:
   build:
