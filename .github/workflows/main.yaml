@@ -1,5 +1,7 @@
 name: Build and Test GitHub actions
-on: push
+on: 
+  push:
+    branches: dev-client-backapi
 
 jobs:
   build_and_test:
