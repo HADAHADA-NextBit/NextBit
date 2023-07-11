@@ -1,0 +1,48 @@
+name: Vue Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - dev-client-front
+    paths:
+      - client-front/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm add @quasar/cli -g && pnpm install
+
+      - name: Build
+        run: |
+          if [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
+            pnpm run build:pwa
+            aws s3 sync client-front/dist/pwa s3://${{ secrets.CLIENT_FRONT_AWS_S3_BUCKET }} --acl public-read --delete
+            aws cloudfront create-invalidation --distribution-id ${{ secrets.CLIENT_FRONT_AWS_DISTRIBUTION_ID }} --paths "/*"
+            aws route53 change-resource-record-sets --hosted-zone-id ${{ secrets.CLIENT_FRONT_AWS_HOSTED_ID }} --change-batch file://route53-changes.json
+          elif [[ ${{ github.ref }} == 'refs/heads/dev-client-front' ]]; then
+            pnpm run build
+            aws s3 sync client-front/dist/pwa s3://${{ secrets.CLIENT_FRONT_AWS_DEV_S3_BUCKET }} --acl public-read --delete
+          fi
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
