@@ -1,51 +1,49 @@
 <template>
-  <q-card>
-    <div
-      class="orderbook-container"
-      :class="$q.dark.isActive ? 'bg-dark-09' : ''"
-    >
-      <div class="orderbook-layout orderbook-navi">
-        <div class="price">가격</div>
-        <div class="per">등락률</div>
-        <div class="size">수량</div>
+  <q-card
+    class="orderbook-container"
+    :class="$q.dark.isActive ? 'bg-dark-09' : ''"
+  >
+    <div class="orderbook-layout orderbook-navi">
+      <div class="price">가격</div>
+      <div class="per">등락률</div>
+      <div class="size">수량</div>
+    </div>
+    <div class="orderbook-wrap">
+      <div class="ask-wrap">
+        <div
+          class="orderbook-layout"
+          v-for="(data, i) in orderbookAsk"
+          :key="i"
+        >
+          <div class="price">{{ data.ap.toLocaleString() }}</div>
+          <div class="per">
+            {{ data.per > 0 ? '+' : '' }}{{ data.per.toFixed(2) }}%
+          </div>
+          <div class="size">{{ data.as.toFixed(3) }}</div>
+          <div
+            :style="{ width: `${data.barWidth.toFixed(2)}%` }"
+            class="ask-bar"
+          ></div>
+        </div>
       </div>
-      <div class="orderbook-wrap">
-        <div class="ask-wrap">
-          <div
-            class="orderbook-layout"
-            v-for="(data, i) in orderbookAsk"
-            :key="i"
-          >
-            <div class="price">{{ data.ap.toLocaleString() }}</div>
-            <div class="per">
-              {{ data.per > 0 ? '+' : '' }}{{ data.per.toFixed(2) }}%
-            </div>
-            <div class="size">{{ data.as.toFixed(3) }}</div>
-            <div
-              :style="{ width: `${data.barWidth.toFixed(2)}%` }"
-              class="ask-bar"
-            ></div>
+      <div class="orderbook-info text-center">
+        {{ tickerData.tp?.toLocaleString() }}
+      </div>
+      <div class="bid-wrap">
+        <div
+          class="orderbook-layout"
+          v-for="(data, i) in orderbookBid"
+          :key="i"
+        >
+          <div class="price">{{ data.bp.toLocaleString() }}</div>
+          <div class="per">
+            {{ data.per > 0 ? '+' : '' }}{{ data.per.toFixed(2) }}%
           </div>
-        </div>
-        <div class="orderbook-info text-center">
-          {{ tickerData.tp?.toLocaleString() }}
-        </div>
-        <div class="bid-wrap">
+          <div class="size">{{ data.bs.toFixed(3) }}</div>
           <div
-            class="orderbook-layout"
-            v-for="(data, i) in orderbookBid"
-            :key="i"
-          >
-            <div class="price">{{ data.bp.toLocaleString() }}</div>
-            <div class="per">
-              {{ data.per > 0 ? '+' : '' }}{{ data.per.toFixed(2) }}%
-            </div>
-            <div class="size">{{ data.bs.toFixed(3) }}</div>
-            <div
-              :style="{ width: `${data.barWidth.toFixed(2)}%` }"
-              class="bid-bar"
-            ></div>
-          </div>
+            :style="{ width: `${data.barWidth.toFixed(2)}%` }"
+            class="bid-bar"
+          ></div>
         </div>
       </div>
     </div>

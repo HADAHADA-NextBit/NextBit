@@ -1,33 +1,27 @@
 <template>
-  <q-card>
-    <div class="trade-wrap">
-      <ul class="trade-title">
-        <li
-          v-for="title in ['체결시간', '체결가격', '체결량', '체결금액']"
-          :key="title"
-        >
-          {{ title }}
+  <q-card class="trade-wrap">
+    <ul class="trade-title">
+      <li
+        v-for="title in ['체결시간', '체결가격', '체결량', '체결금액']"
+        :key="title"
+      >
+        {{ title }}
+      </li>
+    </ul>
+    <div class="trade-area" @scroll="scrolling">
+      <ul class="trade-info-wrap">
+        <li v-for="data in chart.tradeList" :key="data.sid" class="trade-info">
+          <div class="time-zone">
+            <span>{{ dayjs(data.tms).format('MM.DD') }}</span>
+            <span>{{ dayjs(data.tms).format('HH:mm') }}</span>
+          </div>
+          <div class="trade-price">{{ data.tp.toLocaleString() }}</div>
+          <div :class="data.ab">{{ data.tv }}</div>
+          <div>
+            {{ Number((data.tp * data.tv).toFixed()).toLocaleString() }}
+          </div>
         </li>
       </ul>
-      <div class="trade-area" @scroll="scrolling">
-        <ul class="trade-info-wrap">
-          <li
-            v-for="data in chart.tradeList"
-            :key="data.sid"
-            class="trade-info"
-          >
-            <div class="time-zone">
-              <span>{{ dayjs(data.tms).format('MM.DD') }}</span>
-              <span>{{ dayjs(data.tms).format('HH:mm') }}</span>
-            </div>
-            <div class="trade-price">{{ data.tp.toLocaleString() }}</div>
-            <div :class="data.ab">{{ data.tv }}</div>
-            <div>
-              {{ Number((data.tp * data.tv).toFixed()).toLocaleString() }}
-            </div>
-          </li>
-        </ul>
-      </div>
     </div>
   </q-card>
 </template>
