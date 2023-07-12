@@ -21,7 +21,7 @@
       <ExchangeOrderbook />
     </div>
 
-    <div class="chart">
+    <div class="chart spacing-y-xl">
       <ExchangeChart />
 
       <ExchangeForm />

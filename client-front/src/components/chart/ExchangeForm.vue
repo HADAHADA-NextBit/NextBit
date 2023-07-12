@@ -1,5 +1,5 @@
 <template>
-  <q-card class="bg-dark-09 chart-border">
+  <q-card class="chart-border" :class="$q.dark.isActive ? 'bg-dark-09' : ''">
     <q-card-section class="pa-10">
       <q-btn-toggle
         v-model="isBid"
@@ -19,21 +19,17 @@
 
     <q-card-section class="pa-10 row justify-center">
       <q-radio
-        v-model="tradeType"
-        checked-icon="task_alt"
-        unchecked-icon="panorama_fish_eye"
-        color="white"
-        val="market"
-        label="Market Price"
-      />
-
-      <q-radio
+        v-for="data in [
+          { val: 'market', label: 'Market Price' },
+          { val: 'designation', label: 'Designation Price' },
+        ]"
+        :key="data.val"
         v-model="tradeType"
         checked-icon="task_alt"
         unchecked-icon="panorama_fish_eye"
         :color="isBid ? 'positive' : 'negative'"
-        val="designation"
-        label="Designation Price"
+        :val="data.val"
+        :label="data.label"
       />
     </q-card-section>
 

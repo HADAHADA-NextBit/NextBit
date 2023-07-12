@@ -1,5 +1,5 @@
 <template>
-  <div class="exchange-nav-wrap">
+  <q-card class="exchange-nav-wrap">
     <div class="sort-area">
       <q-btn
         v-for="data in sortTab"
@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </q-card>
 </template>
 
 <script setup lang="ts">

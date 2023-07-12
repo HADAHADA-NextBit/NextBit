@@ -1,29 +1,35 @@
 <template>
-  <div class="trade-wrap">
-    <ul class="trade-title">
-      <li
-        v-for="title in ['체결시간', '체결가격', '체결량', '체결금액']"
-        :key="title"
-      >
-        {{ title }}
-      </li>
-    </ul>
-    <div class="trade-area" @scroll="scrolling">
-      <ul class="trade-info-wrap">
-        <li v-for="data in chart.tradeList" :key="data.sid" class="trade-info">
-          <div class="time-zone">
-            <span>{{ dayjs(data.tms).format('MM.DD') }}</span>
-            <span>{{ dayjs(data.tms).format('HH:mm') }}</span>
-          </div>
-          <div class="trade-price">{{ data.tp.toLocaleString() }}</div>
-          <div :class="data.ab">{{ data.tv }}</div>
-          <div>
-            {{ Number((data.tp * data.tv).toFixed()).toLocaleString() }}
-          </div>
+  <q-card>
+    <div class="trade-wrap">
+      <ul class="trade-title">
+        <li
+          v-for="title in ['체결시간', '체결가격', '체결량', '체결금액']"
+          :key="title"
+        >
+          {{ title }}
         </li>
       </ul>
+      <div class="trade-area" @scroll="scrolling">
+        <ul class="trade-info-wrap">
+          <li
+            v-for="data in chart.tradeList"
+            :key="data.sid"
+            class="trade-info"
+          >
+            <div class="time-zone">
+              <span>{{ dayjs(data.tms).format('MM.DD') }}</span>
+              <span>{{ dayjs(data.tms).format('HH:mm') }}</span>
+            </div>
+            <div class="trade-price">{{ data.tp.toLocaleString() }}</div>
+            <div :class="data.ab">{{ data.tv }}</div>
+            <div>
+              {{ Number((data.tp * data.tv).toFixed()).toLocaleString() }}
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </q-card>
 </template>
 
 <script setup lang="ts">
@@ -91,7 +97,6 @@ onUnmounted(() => {
 <style scoped lang="scss">
 .trade-wrap {
   width: 100%;
-  margin-top: 20px;
   border: $light-chart-page-border;
   border-radius: 10px;
   overflow: hidden;
@@ -164,6 +169,7 @@ onUnmounted(() => {
 
 .body--dark {
   .trade-wrap {
+    background-color: $dark-09;
     border: $dark-chart-page-border;
   }
 
@@ -173,7 +179,7 @@ onUnmounted(() => {
 
   .trade-info {
     &:nth-child(2n) {
-      background-color: $dark-09;
+      background-color: $dark-03;
     }
   }
 }

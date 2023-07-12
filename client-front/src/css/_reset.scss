@@ -6,7 +6,6 @@
 }
 
 html {
-  font-size: 10px;
   color: $dark-05;
   overflow-x: hidden;
   width: 100%;
@@ -15,12 +14,34 @@ html {
 body {
   font-size: 14px;
   font-family: inherit;
-  // padding-top: 60px;
-  // padding-bottom: 150px;
-  // min-height: 100vh;
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+      position: fixed;
+      display: block !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.2);
+      height: 0.1px;
+      border-radius: 10px;
+    }
+  }
 
   &.body--dark {
     background-color: $dark-03;
+
+    * {
+      scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+      &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
   }
 
   * {

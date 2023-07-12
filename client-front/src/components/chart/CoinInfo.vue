@@ -1,5 +1,5 @@
 <template>
-  <div class="coin-info">
+  <q-card class="info-wrap">
     <div class="column">
       <span> {{ chart.coinFullName.ko }} </span>
       <span>
@@ -76,7 +76,7 @@
         {{ chart.tickerData.l52wp?.toLocaleString() }}
       </span>
     </div>
-  </div>
+  </q-card>
 </template>
 
 <script setup lang="ts">
@@ -86,12 +86,9 @@ const chart = useChartStore();
 </script>
 
 <style scoped lang="scss">
-.coin-info {
+.info-wrap {
   height: 80px;
   padding: 10px;
-  background-color: $light-02;
-  color: white;
-  border: $dark-chart-page-border;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -115,8 +112,8 @@ const chart = useChartStore();
 }
 
 .body--dark {
-  .coin-info {
-    background-color: $dark-02;
+  .info-wrap {
+    background-color: $dark-09;
   }
 }
 </style>
