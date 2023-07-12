@@ -30,7 +30,9 @@
         class="glossy-down"
         :class="$q.dark.isActive ? 'bg-dark-02' : 'bg-light-02'"
       >
-        <q-toolbar-title>Footer</q-toolbar-title>
+        <q-space />
+
+        <span>© Team HadaHada</span>
       </q-toolbar>
     </q-footer>
 
