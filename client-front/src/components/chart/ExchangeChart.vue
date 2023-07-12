@@ -6,13 +6,11 @@
 import dayjs from 'dayjs';
 import axios from 'axios';
 import { ref, onBeforeMount, watch, computed } from 'vue';
-import { useCommonStore } from 'src/stores/common-store';
 import { useChartStore } from 'src/stores/chart-store';
 import EchartsDefault from 'src/components/chart/EchartsDefault.vue';
 import { colors } from 'src/utils/rule';
 
 const chart = useChartStore();
-const locale = computed(() => useCommonStore().language);
 
 const candleData = ref<{ [key: string]: number[] }>({});
 const candleVolume = ref<{ [key: string]: number[] }>({});

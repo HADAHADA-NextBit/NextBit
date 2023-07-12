@@ -11,7 +11,6 @@
 <script setup lang="ts">
 import { useQuasar, LocalStorage } from 'quasar';
 import { ref, watch, onBeforeMount } from 'vue';
-import { useCommonStore } from 'src/stores/common-store';
 
 const $q = useQuasar();
 const darkMode = ref(false);

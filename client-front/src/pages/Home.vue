@@ -1,7 +1,5 @@
 <template>Home Test6</template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue';
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss"></style>

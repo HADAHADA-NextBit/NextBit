@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, onUnmounted } from 'vue';
+import { onMounted, computed, onUnmounted } from 'vue';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { useChartStore } from 'src/stores/chart-store';
