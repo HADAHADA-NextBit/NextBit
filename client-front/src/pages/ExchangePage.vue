@@ -23,6 +23,9 @@
 
     <div class="chart">
       <ExchangeChart />
+
+      <ExchangeForm />
+
       <ExchangeTrade />
     </div>
 
@@ -34,12 +37,13 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { debounce } from 'quasar';
 import ExchangeChart from 'src/components/chart/ExchangeChart.vue';
 import ExchangeOrderbook from 'src/components/chart/ExchangeOrderbook.vue';
 import MarketList from 'src/components/chart/MarketList.vue';
 import ExchangeTrade from 'src/components/chart/ExchangeTrade.vue';
-import { debounce } from 'quasar';
 import CoinInfo from 'src/components/chart/CoinInfo.vue';
+import ExchangeForm from 'src/components/chart/ExchangeForm.vue';
 
 const listControl = ref(false);
 
@@ -80,7 +84,7 @@ window.addEventListener(
 
 .orderbook {
   width: 25%;
-  height: 80vh;
+  height: 100%;
 }
 
 .chart {
@@ -88,13 +92,12 @@ window.addEventListener(
   display: flex;
   flex-direction: column;
   padding: 0 10px;
-  height: 80vh;
 }
 
 .market {
   width: 25%;
   min-width: 320px;
-  height: 80vh;
+  height: 1000px;
 }
 
 .exchange-nav-controller {
@@ -103,11 +106,11 @@ window.addEventListener(
 
 @media (max-width: 1200px) {
   .orderbook {
-    width: 40%;
+    width: 30%;
   }
 
   .chart {
-    width: 60%;
+    width: 70%;
     height: inherit;
   }
 

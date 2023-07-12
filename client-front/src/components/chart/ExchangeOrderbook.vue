@@ -12,8 +12,8 @@
       <div class="ask-wrap">
         <div
           class="orderbook-layout"
-          v-for="data in orderbookAsk"
-          :key="data.ap"
+          v-for="(data, i) in orderbookAsk"
+          :key="i"
         >
           <div class="price">{{ data.ap.toLocaleString() }}</div>
           <div class="per">
@@ -32,8 +32,8 @@
       <div class="bid-wrap">
         <div
           class="orderbook-layout"
-          v-for="data in orderbookBid"
-          :key="data.bp"
+          v-for="(data, i) in orderbookBid"
+          :key="i"
         >
           <div class="price">{{ data.bp.toLocaleString() }}</div>
           <div class="per">
@@ -140,7 +140,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
-$navigation-height: 35px;
+$box-height: 40px;
 $info-height: 50px;
 
 .orderbook-container {
@@ -148,11 +148,13 @@ $info-height: 50px;
   border-radius: 10px;
   overflow: hidden;
   border: $light-chart-page-border;
+  position: relative;
+  padding-top: $box-height;
+  padding-bottom: 10px;
 }
 
 .orderbook-wrap {
   overflow-y: auto;
-  height: 100%;
 }
 
 .orderbook-layout {
@@ -161,7 +163,7 @@ $info-height: 50px;
   align-items: center;
   padding: 5px;
   position: relative;
-  height: 30px;
+  height: $box-height;
 
   &:not(:last-of-type) {
     border-bottom: $light-chart-page-border;
@@ -169,7 +171,12 @@ $info-height: 50px;
 }
 
 .orderbook-navi {
-  height: $navigation-height;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: $dark-09;
+  z-index: 2;
 }
 
 .orderbook-info {
@@ -185,6 +192,7 @@ $info-height: 50px;
 .bid-wrap {
   display: flex;
   flex-direction: column;
+  height: 450px;
 }
 
 .price {

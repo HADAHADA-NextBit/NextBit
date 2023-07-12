@@ -1,13 +1,13 @@
+export const identityExp = /^[a-zA-Z0-9]{4,16}$/;
+export const numberRegex = /[^0-9.]/g;
+export const passwordExp =
+  /^(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,15}$/;
+
 export const colors = {
   up: '#D24F45',
   down: '#1261C4',
   same: '#000',
 };
-
-export const identityExp = /^[a-zA-Z0-9]{4,16}$/;
-
-export const passwordExp =
-  /^(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,15}$/;
 
 export const parseJwt = (credential: any) => {
   const base64Url = credential.split('.')[1];
@@ -109,4 +109,19 @@ export const convertTickerType: Record<string, string | number> = {
   lowest_52_week_price: 'l52wp',
   lowest_52_week_date: 'l52wd',
   timestamp: 'tms',
+};
+
+export const comma = (change: number | string, digit = 8): string => {
+  return removeOthers(change).toLocaleString(undefined, {
+    maximumFractionDigits: digit,
+  });
+};
+
+export const removeOthers = (num: any) => {
+  num = String(num);
+  if (num.split('.').length > 2) {
+    num = num.split('.')[0].concat('.').concat(num.split('.')[1]);
+  }
+  num = Number(num.replaceAll(numberRegex, ''));
+  return num;
 };

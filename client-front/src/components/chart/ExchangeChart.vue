@@ -98,14 +98,14 @@ const options = ref({
   ],
   grid: [
     {
-      left: 20,
-      right: 80,
+      left: 10,
+      right: 70,
       top: 10,
       height: 290,
     },
     {
-      left: 20,
-      right: 80,
+      left: 10,
+      right: 70,
       height: 60,
       top: 310,
     },

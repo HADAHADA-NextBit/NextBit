@@ -2,12 +2,7 @@
   <div class="trade-wrap">
     <ul class="trade-title">
       <li
-        v-for="title in [
-          '체결시간(UTC)',
-          '체결가격(KRW)',
-          '체결량(BTC)',
-          '체결금액(KRW)',
-        ]"
+        v-for="title in ['체결시간', '체결가격', '체결량', '체결금액']"
         :key="title"
       >
         {{ title }}
