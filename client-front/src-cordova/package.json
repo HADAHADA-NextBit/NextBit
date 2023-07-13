@@ -15,6 +15,7 @@
   "devDependencies": {
     "cordova-android": "^10.1.2",
     "cordova-ios": "^6.2.0",
+    "cordova-plugin-splashscreen": "^6.0.2",
     "cordova-plugin-wkwebview-engine": "^1.2.2"
   },
   "cordova": {
@@ -22,7 +23,8 @@
       "android"
     ],
     "plugins": {
-      "cordova-plugin-wkwebview-engine": {}
+      "cordova-plugin-wkwebview-engine": {},
+      "cordova-plugin-splashscreen": {}
     }
   }
 }

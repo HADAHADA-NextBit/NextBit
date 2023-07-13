@@ -174,7 +174,7 @@
               [SessionStorage.set('platform', platform.text), platform.click()]
             "
           >
-            <q-icon :name="`img:/icons/${platform.icon}`" size="40px" />
+            <q-icon :name="`img:/images/${platform.icon}`" size="40px" />
           </q-btn>
 
           <div id="naverIdLogin" style="display: none"></div>

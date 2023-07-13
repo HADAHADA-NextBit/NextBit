@@ -31,7 +31,7 @@
           {{ $t('news.need_to_know').split('\n')[1] }}
         </div>
       </div>
-      <q-img src="/icons/news.png" style="max-width: 500px" />
+      <q-img src="/images/news.png" style="max-width: 500px" />
     </div>
 
     <div style="max-width: 1000px" class="m-auto">

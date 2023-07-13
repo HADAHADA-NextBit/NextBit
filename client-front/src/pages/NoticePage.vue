@@ -24,7 +24,7 @@
         <div class="fs-16 mb-50" style="font-weight: 200">
           {{ $t('notice.need_to_know') }}
         </div>
-        <q-img src="/icons/notice.png" />
+        <q-img src="/images/notice.png" />
       </div>
 
       <div class="right spacing-y-xl pa-30">
