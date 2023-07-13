@@ -10,8 +10,9 @@
         @click="[changeSort(data.sortTarget)]"
         unelevated
         tabindex="-1"
+        no-caps
       >
-        {{ data.text }}
+        {{ $t(data.text, { type: '&#8361;' }) }}
       </q-btn>
     </div>
 
@@ -29,7 +30,13 @@
         "
       >
         <div class="coin-name-wrap">
-          <span class="coin-name">{{ data.korean_name }}</span>
+          <span class="coin-name">
+            {{
+              i18n.global.locale.value === 'en-US'
+                ? data.english_name
+                : data.korean_name
+            }}
+          </span>
           <span class="coin-market">{{ data.market }}</span>
         </div>
         <div class="now-price-wrap">
@@ -66,6 +73,7 @@ import axios from 'axios';
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useChartStore } from 'src/stores/chart-store';
 import { objSort, convertKeys, convertTickerType } from 'src/utils/rule';
+import { i18n } from 'src/boot/i18n';
 
 const chart = useChartStore();
 
@@ -74,19 +82,19 @@ const selectMarket = ref('KRW');
 const selectSort = ref({ sortTarget: '', sort: 'desc' });
 const sortTab = [
   {
-    text: '한글명',
+    text: 'word.korean_name',
     sortTarget: 'korean_name',
   },
   {
-    text: '현재가',
+    text: 'word.price',
     sortTarget: 'tp',
   },
   {
-    text: '전일대비',
+    text: 'word.previous_change',
     sortTarget: 'scr',
   },
   {
-    text: '거래대금',
+    text: 'word.volume_type',
     sortTarget: 'atp24h',
   },
 ];
@@ -291,26 +299,26 @@ nav {
     &::before {
       content: '';
       position: absolute;
-      top: 5px;
+      top: 11px;
       right: 5px;
       left: inherit;
       bottom: inherit;
       box-shadow: inherit;
       border-radius: 0;
       border-top: none;
-      border-bottom: 8px solid #ddd;
-      border-right: 5px solid transparent;
-      border-left: 5px solid transparent;
+      border-bottom: 6px solid #ddd;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
     }
 
     &::after {
       content: '';
       position: absolute;
-      bottom: 5px;
+      bottom: 8px;
       right: 5px;
-      border-top: 8px solid #ddd;
-      border-right: 5px solid transparent;
-      border-left: 5px solid transparent;
+      border-top: 6px solid #ddd;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
     }
 
     &.ask {

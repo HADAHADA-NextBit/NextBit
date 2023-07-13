@@ -10,7 +10,7 @@
     </div>
 
     <div class="column">
-      <span> 현재가 </span>
+      <span> {{ $t('word.current_price') }} </span>
       <span
         :class="
           chart.tickerData.tp > chart.tickerData.pcp
@@ -25,28 +25,30 @@
     </div>
 
     <div class="column">
-      <span> 전일종가 </span>
+      <span> {{ $t('word.previous_close') }} </span>
       <span>
         {{ chart.tickerData.pcp?.toLocaleString() }}
       </span>
     </div>
 
     <div class="column">
-      <span> 당일고가 </span>
+      <span> {{ $t('word.day_high') }} </span>
       <span class="text-positive">
         {{ chart.tickerData.hp?.toLocaleString() }}
       </span>
     </div>
 
     <div class="column">
-      <span> 당일저가 </span>
+      <span> {{ $t('word.day_low') }} </span>
       <span class="text-negative">
         {{ chart.tickerData.lp?.toLocaleString() }}
       </span>
     </div>
 
     <div class="column">
-      <span> 거래량 </span>
+      <span>
+        {{ $t('word.volume_type', { type: chart.selectCoin.split('-')[1] }) }}
+      </span>
       <span>
         {{ Math.round(chart.tickerData.atv24h).toLocaleString() }}
         {{ chart.selectCoin.split('-')[1] }}
@@ -54,26 +56,26 @@
     </div>
 
     <div class="column">
-      <span> 거래대금 </span>
+      <span> {{ $t('word.volume_type', { type: '&#8361;' }) }} </span>
       <span>
         {{
           chart.tickerData.atp24h &&
           Number(chart.tickerData.atp24h.toFixed().slice(0, -6))
             .toLocaleString()
-            .concat(' 백만')
+            .concat(` ${$t('word.short_million')}`)
         }}
       </span>
     </div>
 
     <div class="column">
-      <span> 52주 최고 </span>
+      <span> {{ $t('word.52w_highest') }} </span>
       <span class="text-positive">
         {{ chart.tickerData.h52wp?.toLocaleString() }}
       </span>
     </div>
 
     <div class="column">
-      <span> 52주 최저 </span>
+      <span> {{ $t('word.52w_lowest') }} </span>
       <span class="text-negative">
         {{ chart.tickerData.l52wp?.toLocaleString() }}
       </span>
@@ -88,35 +90,4 @@ import { i18n } from 'src/boot/i18n';
 const chart = useChartStore();
 </script>
 
-<style scoped lang="scss">
-.info-wrap {
-  height: 80px;
-  padding: 10px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-
-  div {
-    flex: 1;
-    text-align: center;
-    white-space: nowrap;
-
-    &:not(:first-of-type) {
-      margin-left: 15px;
-    }
-
-    span {
-      &:first-child {
-        margin-bottom: 5px;
-      }
-    }
-  }
-}
-
-.body--dark {
-  .info-wrap {
-    background-color: $dark-09;
-  }
-}
-</style>
+<style scoped lang="scss"></style>

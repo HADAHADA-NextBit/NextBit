@@ -4,9 +4,9 @@
     :class="$q.dark.isActive ? 'bg-dark-09' : ''"
   >
     <div class="orderbook-layout orderbook-navi">
-      <div class="price">가격</div>
-      <div class="per">등락률</div>
-      <div class="size">수량</div>
+      <div class="price">{{ $t('word.price') }}</div>
+      <div class="per">{{ $t('word.fluctuation') }}</div>
+      <div class="size">{{ $t('word.quantity') }}</div>
     </div>
     <div class="orderbook-wrap">
       <div class="ask-wrap">

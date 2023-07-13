@@ -2,10 +2,15 @@
   <q-card class="trade-wrap">
     <ul class="trade-title">
       <li
-        v-for="title in ['체결시간', '체결가격', '체결량', '체결금액']"
+        v-for="title in [
+          'word.conclusion _time',
+          'word.conclusion_price',
+          'word.conclusion_volume',
+          'word.conclusion_amount',
+        ]"
         :key="title"
       >
-        {{ title }}
+        {{ $t(title) }}
       </li>
     </ul>
     <div class="trade-area" @scroll="scrolling">

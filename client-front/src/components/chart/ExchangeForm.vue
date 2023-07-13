@@ -9,8 +9,8 @@
         glossy
         :toggle-color="isBid ? 'positive' : 'negative'"
         :options="[
-          { label: 'Bid', value: true },
-          { label: 'Ask', value: false },
+          { label: $t('word.bid'), value: true },
+          { label: $t('word.ask'), value: false },
         ]"
         spread
         no-caps
@@ -20,8 +20,8 @@
     <q-card-section class="pa-10 row justify-center">
       <q-radio
         v-for="data in [
-          { val: 'market', label: 'Market Price' },
-          { val: 'designation', label: 'Designation Price' },
+          { val: 'market', label: 'word.market_price' },
+          { val: 'designation', label: 'word.designation_price' },
         ]"
         :key="data.val"
         v-model="tradeType"
@@ -29,7 +29,7 @@
         unchecked-icon="panorama_fish_eye"
         :color="isBid ? 'positive' : 'negative'"
         :val="data.val"
-        :label="data.label"
+        :label="$t(data.label)"
       />
     </q-card-section>
 
@@ -49,10 +49,12 @@
         inputmode="decimal"
       >
         <template #prepend>
-          <span class="fs-14">{{ isBid ? '보유금' : '보유코인' }}</span>
+          <span class="fs-14">
+            {{ isBid ? $t('word.holdings') : $t('word.holding_coin') }}
+          </span>
         </template>
         <template #append>
-          <span class="fs-14"> \ </span>
+          <span class="fs-14"> &#8361; </span>
         </template>
       </q-input>
 
@@ -68,10 +70,10 @@
           inputmode="decimal"
         >
           <template #prepend>
-            <span class="fs-14"> 체결예상가 </span>
+            <span class="fs-14"> {{ $t('word.estimated') }} </span>
           </template>
           <template #append>
-            <span class="fs-14"> \ </span>
+            <span class="fs-14"> &#8361;</span>
           </template>
         </q-input>
       </template>
@@ -92,11 +94,11 @@
         >
           <template #prepend>
             <span class="fs-14">
-              {{ isBid ? '매수가격' : '매도가격' }}
+              {{ isBid ? $t('word.bid_price') : $t('word.ask_price') }}
             </span>
           </template>
           <template #append>
-            <span class="fs-14"> \ </span>
+            <span class="fs-14"> &#8361; </span>
           </template>
         </q-input>
       </template>
@@ -114,7 +116,9 @@
         dense
         inputmode="decimal"
       >
-        <template #prepend> <span class="fs-14">주문수량</span> </template>
+        <template #prepend>
+          <span class="fs-14">{{ $t('word.order_quantity') }}</span>
+        </template>
         <template #append>
           <span class="fs-14">{{ chart.selectCoin.split('-')[1] }} </span>
         </template>
@@ -130,16 +134,18 @@
         dense
         inputmode="decimal"
       >
-        <template #prepend> <span class="fs-14">주문총액</span> </template>
+        <template #prepend>
+          <span class="fs-14">{{ $t('word.order_total') }}</span>
+        </template>
         <template #append>
-          <span class="fs-14"> \ </span>
+          <span class="fs-14"> &#8361; </span>
         </template>
       </q-input>
     </q-card-section>
 
     <q-card-section class="pa-10">
       <q-btn
-        :label="isBid ? '매수' : '매도'"
+        :label="isBid ? $t('word.bid') : $t('word.ask')"
         class="full-width"
         :color="isBid ? 'positive' : 'negative'"
         rounded
