@@ -192,7 +192,7 @@ $info-height: 50px;
 .bid-wrap {
   display: flex;
   flex-direction: column;
-  height: 450px;
+  height: 570px;
 }
 
 .price {

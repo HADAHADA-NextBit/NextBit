@@ -1,7 +1,9 @@
 <template>
   <q-card class="info-wrap">
     <div class="column">
-      <span> {{ chart.coinFullName.ko }} </span>
+      <span>
+        {{ chart.coinFullName[i18n.global.locale.value.split('-')[0]] }}
+      </span>
       <span>
         {{ chart.selectCoin }}
       </span>
@@ -81,6 +83,7 @@
 
 <script setup lang="ts">
 import { useChartStore } from 'src/stores/chart-store';
+import { i18n } from 'src/boot/i18n';
 
 const chart = useChartStore();
 </script>

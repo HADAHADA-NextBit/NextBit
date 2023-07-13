@@ -97,7 +97,7 @@ window.addEventListener(
 .market {
   width: 25%;
   min-width: 320px;
-  height: 1000px;
+  height: 1240px;
 }
 
 .exchange-nav-controller {
