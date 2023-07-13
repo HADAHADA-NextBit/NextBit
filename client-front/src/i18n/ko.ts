@@ -60,6 +60,6 @@ export default {
   'word.signup': '회원가입',
   'word.support': '지원',
   'word.title': '제목',
-  'word.volume_type': '거래량({type})',
+  'word.volume_type': '거래량({0})',
   'word.wallet': '지갑'
 }

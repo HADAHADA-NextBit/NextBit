@@ -60,6 +60,6 @@ export default {
   'word.signup': 'Sign up',
   'word.support': 'Support',
   'word.title': 'Title',
-  'word.volume_type': 'Volume({type})',
+  'word.volume_type': 'Volume({0})',
   'word.wallet': 'Wallet'
 }

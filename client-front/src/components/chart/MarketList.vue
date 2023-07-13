@@ -12,7 +12,7 @@
         tabindex="-1"
         no-caps
       >
-        {{ $t(data.text, { type: '&#8361;' }) }}
+        {{ $t(data.text, ['&#8361;']) }}
       </q-btn>
     </div>
 

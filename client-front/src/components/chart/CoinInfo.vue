@@ -47,7 +47,7 @@
 
     <div class="column">
       <span>
-        {{ $t('word.volume_type', { type: chart.selectCoin.split('-')[1] }) }}
+        {{ $t('word.volume_type', [chart.selectCoin.split('-')[1]]) }}
       </span>
       <span>
         {{ Math.round(chart.tickerData.atv24h).toLocaleString() }}
@@ -56,7 +56,7 @@
     </div>
 
     <div class="column">
-      <span> {{ $t('word.volume_type', { type: '&#8361;' }) }} </span>
+      <span> {{ $t('word.volume_type', ['&#8361;']) }} </span>
       <span>
         {{
           chart.tickerData.atp24h &&
