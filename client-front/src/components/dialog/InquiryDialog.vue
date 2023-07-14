@@ -1,11 +1,16 @@
 <template>
-  <q-dialog presistent ref="dialogRef">
+  <q-dialog ref="dialogRef" persistent no-shake>
     <q-card
-      class="default-dialog pa-50 text-center"
+      class="default-dialog text-center"
       :class="$q.dark.isActive ? 'bg-dark-03' : 'bg-light-02'"
       dark
     >
-      <q-card-section>
+      <q-card-section class="row pa-10">
+        <q-space />
+        <q-btn icon="close" flat dense v-close-popup size="16px" />
+      </q-card-section>
+
+      <q-card-section style="padding: 10%">
         <q-form @submit="sendInquiry" class="q-gutter-md">
           <i class="fa-solid fa-paper-plane" style="font-size: 60px"></i>
 
