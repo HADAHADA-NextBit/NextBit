@@ -5,9 +5,9 @@
       <q-toolbar class="glossy pa-0" style="height: 60px">
         <q-fab
           flat
-          @click="drawer = !drawer"
-          icon="chevron_left"
-          active-icon="chevron_right"
+          icon="chevron_right"
+          active-icon="chevron_left"
+          v-model="drawer"
           size="16px"
         />
 
