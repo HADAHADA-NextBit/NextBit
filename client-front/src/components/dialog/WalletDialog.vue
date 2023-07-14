@@ -5,13 +5,47 @@
     persistent
     no-shake
     maximized
-    transition-show="slide-left"
-    transition-hide="slide-right"
-    position="right"
+    transition-show="jump-left"
+    transition-hide="jump-right"
   >
     <q-card style="max-width: 500px; min-width: 320px">
       <q-card-section class="row items-center pa-5">
-        <q-btn icon="chevron_right" flat dense v-close-popup size="20px" />
+        <q-space />
+        <q-btn icon="close" flat dense v-close-popup size="16px" />
+      </q-card-section>
+
+      <q-card-section class="text-center">
+        <div class="column">
+          <span class="fs-20 mb-10 text-weight-bold"> Bitcoin </span>
+          <span class="fs-16 text-dark-01"> BTC </span>
+        </div>
+      </q-card-section>
+
+      <q-card-section class="wallet-info">
+        <div class="column text-center">
+          <span> {{ $t('word.holding_quantity') }} </span>
+          <span> 1 </span>
+        </div>
+
+        <div class="column text-center">
+          <span> {{ $t('word.total_bid') }} </span>
+          <span>1 </span>
+        </div>
+
+        <div class="column text-center">
+          <span> {{ $t('word.average') }} </span>
+          <span>1 </span>
+        </div>
+
+        <div class="column text-center">
+          <span> {{ $t('word.evaluation') }} </span>
+          <span>1 </span>
+        </div>
+
+        <div class="column text-center">
+          <span> {{ $t('word.yield') }} </span>
+          <span> 1</span>
+        </div>
       </q-card-section>
 
       <q-card-section>
@@ -114,4 +148,24 @@ const rows: QTableProps['rows'] = [
 const { dialogRef, onDialogOK } = useDialogPluginComponent();
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.wallet-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+
+    &:not(:first-of-type) {
+      margin-left: 15px;
+    }
+
+    span {
+      line-height: 1.5;
+    }
+  }
+}
+</style>
