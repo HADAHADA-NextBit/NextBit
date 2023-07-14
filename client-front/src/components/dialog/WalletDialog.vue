@@ -9,7 +9,7 @@
     transition-hide="jump-right"
   >
     <q-card style="max-width: 500px; min-width: 320px">
-      <q-card-section class="row items-center pa-5">
+      <q-card-section class="pa-5">
         <q-space />
         <q-btn icon="close" flat dense v-close-popup size="16px" />
       </q-card-section>
